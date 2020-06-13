@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Prestamos</title>
+<!-- Bootstrap CSS -->
+<link href="../static/css/bootstrap.css" rel="stylesheet"
+	th:href="@{/css/bootstrap.css}">
+</head>
+<body>
+	<div class="container">
+		<br>
+		<h2>Prestar libro</h2>
+		<form action="#" th:action="@{/savePrestamo}" class="form-group"
+			th:object=${loan} method="post">
+
+			<div th:if="${param.error}" class="alert alert-danger" role="alert">
+				El usuario no tiene la edad adecuada</div>
+
+			<div class="form-group">
+
+				<label form="nombre">Usuario</label> <select
+					th:field="*{usuario.id}">
+					<option value="">--</option>
+					<option th:each="user: ${listUser}" th:value="${user.id}"
+						th:utext="${user.name}" />
+				</select>
+			</div>
+
+			<input type="hidden" th:field="*{id}" name="id" id="id">
+
+			<div class="form-group">
+				<label form="nombre">Libro</label> <select th:field="*{libro.id}">
+					<option value="">--</option>
+					<option th:each="book: ${listBook}" th:value="${book.id}"
+						th:utext="${book.name}" />
+				</select>
+			</div>
+
+			<button type="submit" class="btn btn-success">Guardar</button>
+			<a class="btn btn-secondary" href="/Prestamos">Volver</a>
+		</form>
+
+	</div>
+
+</body>
+</html>

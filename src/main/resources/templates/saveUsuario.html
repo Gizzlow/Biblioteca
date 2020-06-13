@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Usuarios</title>
+<!-- Bootstrap CSS -->
+<link href="../static/css/bootstrap.css" rel="stylesheet"
+	th:href="@{/css/bootstrap.css}">
+</head>
+<body>
+	<div class="container">
+		<br>
+		<h2>Agregar usuario</h2>
+		<form action="#" th:action="@{/saveUsuario}" class="form-group"
+			th:object=${user} method="post">
+			<div class="form-group">
+				<label form="nombre">Nombre</label> <input type="text"
+					class="form-control" id="name" th:field="*{name}" name="name">
+			</div>
+			<input type="hidden" th:field="*{id}" name="id" id="id">
+			<div class="form-group">
+				<label form="nombre">Clave</label> <input type="text"
+					class="form-control" id="password" th:field="*{password}"
+					name="password">
+			</div>
+
+			<div class="form-group">
+				<label form="nombre">Edad</label> <input type="text"
+					class="form-control" id="age" th:field="*{age}" name="age">
+			</div>
+
+			<div class="form-group">
+				<label form="nombre">Zona</label> <input type="text"
+					class="form-control" id="zone" th:field="*{zone}" name="zone">
+			</div>
+			<button type="submit" class="btn btn-success">Guardar</button>
+			<a class="btn btn-secondary" href="/Usuarios">Volver</a>
+		</form>
+
+	</div>
+
+</body>
+</html>

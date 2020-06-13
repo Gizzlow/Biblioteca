@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Prestamos</title>
+<!-- Bootstrap CSS -->
+<link href="../static/css/bootstrap.css" rel="stylesheet"
+	th:href="@{/css/bootstrap.css}">
+</head>
+<body>
+	<div class="container">
+		<br>
+		<h2 th:if="${listLoan.isEmpty()}">No hay prestamos</h2>
+		<div th:if="${!listLoan.isEmpty()}">
+			<h2>Prestamos</h2>
+			<table class="table">
+				<thead>
+					<tr>
+						<th>Usuario</th>
+						<th>Libro</th>
+						<th>Fecha prestamo</th>
+						<th>Fecha entrega</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="loan:${listLoan}">
+						<td th:text="${loan.usuario.name}">
+						<td th:text="${loan.libro.name}">
+						<td th:text="${loan.fechaInicio}">
+						<td><span th:if="${loan.fechaFin!=null}"
+							th:text="${loan.fechaFin}"></span> <span
+							th:if="${loan.fechaFin==null}"
+							th:text="${loan.diasPrestamo}+' '+ dias"></span></td>
+
+						<td><a class="btn btn-primary"
+							th:href="@{/savePrestamo/{id}(id=${loan.id})}">Editar</a></td>
+						<td><a class="btn btn-success"
+							th:href="@{/deletePrestamo/{id}(id=${loan.id})}">Eliminar</a></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<div>
+			<a href="/savePrestamo/0" class="btn btn-primary">Agregar</a> <a
+				class="btn btn-secondary" href="/">Volver</a>
+		</div>
+		<br>
+		<div class="container">
+			<h2>Prestamos por zona</h2>
+			<table class="table">
+				<tbody>
+					<tr th:each="zones:${listZones}">
+						<td th:text="${zones}"></td>
+						<td th:text="${listZones2.get(zones)}"></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</body>
+</html>

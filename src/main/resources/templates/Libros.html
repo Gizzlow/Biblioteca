@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Libros</title>
+<!-- Bootstrap CSS -->
+<link href="../static/css/bootstrap.css" rel="stylesheet"
+	th:href="@{/css/bootstrap.css}">
+</head>
+<body>
+	<div class="container">
+		<br>
+		<h2 th:if="${listBook.isEmpty()}">No hay libros</h2>
+		<div th:if="${!listBook.isEmpty()}">
+			<h2>Libros</h2>
+			<table class="table">
+				<thead>
+					<tr>
+						<th>Nombre</th>
+						<th>Pegi</th>
+						<th>Disponibilidad</th>
+						<th>Foto</th>
+						<th></th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="book:${listBook}">
+						<td th:text="${book.name}">
+						<td th:text="${book.pegi}">
+						<td><span th:if="${book.available!=true}" th:text="Prestado"></span>
+							<span th:if="${book.available==true}" th:text="Disponible"></span></td>
+						<td th:text="${book.photo}">
+						<td><a class="btn btn-primary"
+							th:href="@{/saveLibro/{id}(id=${book.id})}">Editar</a></td>
+						<td><a class="btn btn-success"
+							th:href="@{/deleteLibro/{id}(id=${book.id})}">Eliminar</a></td>
+					</tr>
+				</tbody>
+				<tfoot>
+					<tr>
+						<td>Total de libros prestados</td>
+						<td th:text="${countBooks}"></td>
+					</tr>
+				</tfoot>
+			</table>
+		</div>
+		<div>
+			<a href="/saveLibro/0" class="btn btn-primary">Agregar</a> <a
+				class="btn btn-secondary" href="/">Volver</a>
+		</div>
+	</div>
+</body>
+</html>

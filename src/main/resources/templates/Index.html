@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Biblioteca municipal</title>
+<!-- Bootstrap CSS -->
+<link href="../static/css/bootstrap.css" rel="stylesheet"
+	th:href="@{/css/bootstrap.css}">
+</head>
+<body>
+	<div class="container">
+		<br>
+		<h2>Biblioteca municipal</h2>
+		<br>
+		<table class="table">
+			<thead>
+				<tr>
+					<td><a class="btn btn-success" href="/Usuarios">Usuarios</a></td>
+					<td><a class="btn btn-success" href="/Prestamos">Prestamos</a></td>
+					<td><a class="btn btn-success" href="/Libros">Libros</a></td>
+					<td><form th:action="@{/logout}" method="post">
+							<input type="submit" class="btn btn-success"
+								value="Cerrar Sesion" />
+						</form></td>
+				</tr>
+			</thead>
+		</table>
+	</div>
+</body>
+</html>
